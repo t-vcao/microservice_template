@@ -1,0 +1,12 @@
+.component-app {
+  /* display: flex; */
+  height: 100%;
+}
+
+.header {
+  padding: 2em;
+}
+
+.right {
+  float: right;
+}
