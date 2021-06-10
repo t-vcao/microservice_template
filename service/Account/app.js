@@ -14,7 +14,6 @@ app.use(express.json()) // To parse the incoming requests with JSON payloads
 
 app.post('/account_login', (req, res) => {
   let args = req.body;
-  console.log(args);
   const [username, password] = [args['username'], args['password']];
   
   console.log(`Validating ${username}`);

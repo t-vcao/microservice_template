@@ -8,20 +8,28 @@ from flask import request, jsonify
 from flask_cors import CORS
 import math
 import sys
+import json
 
 app = flask.Flask(__name__)
 CORS(app)
 
 @app.route('/icecream_add', methods=['POST'])
 def icecream_add():
-    print("icecream_add")
     content = request.json
     username, productID = content['username'], content['productID']
     
-    print("Ice Cream Add method for {} with {}".format(username, productID))
+    with open('inventory.json') as f:
+        data = json.load(f)
+
+    name, stock = "temp", 0
+    for ele in data["inventory"]:
+        if ele["id"] == productID:
+            name = ele["name"]
+            stock = ele["stock"]
     # validating
     response = {
-        "name" : "temp",
+        "name" : name,
+        "stock" : stock,
         "valid" : True
     }
 

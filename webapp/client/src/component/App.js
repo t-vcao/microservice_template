@@ -1,6 +1,6 @@
 import React from "react";
 import Display from "./Display";
-import LoginButton from "./LoginButton"
+import Login from "./Login"
 import "./App.css";
 
 export default class App extends React.Component {
@@ -9,7 +9,7 @@ export default class App extends React.Component {
       <div className="component-app">
         <div className="header">
           <div className="right">
-          <LoginButton />
+            <Login />
           </div>
           
         </div>

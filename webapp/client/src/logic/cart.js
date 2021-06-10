@@ -22,19 +22,5 @@
     });
   const validateResponse = await validate.json();
   console.log("response", validateResponse["valid"]);
-  alert(`Added ${validateResponse["name"]}`);
-
-
-  // const add = await fetch(`/account/add`, {
-  //   method: 'POST',
-  //   headers: {
-  //     'Accept': 'application/json',
-  //     'Content-Type': 'application/json',
-  //   },
-  //   body: JSON.stringify({
-  //     username,
-  //     productID
-  //   }),
-  // });
-  // const addResponse = await add.json();
+  alert(`Added ${validateResponse["name"]} to cart. Only ${validateResponse["stock"]} left in stock`);
 }
