@@ -22,5 +22,13 @@
     });
   const validateResponse = await validate.json();
   console.log("response", validateResponse["valid"]);
-  alert(`Added ${validateResponse["name"]} to cart. Only ${validateResponse["stock"]} left in stock`);
+  if (validateResponse["valid"])
+  {
+    alert(`Added ${validateResponse["name"]} to cart. Only ${validateResponse["stock"]} left in stock`);
+  }
+  else
+  {
+    alert(`${validateResponse["name"]} out of stock.`);
+  }
+  
 }

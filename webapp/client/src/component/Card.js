@@ -8,13 +8,14 @@ export default class Card extends React.Component {
     name: PropTypes.string,
     productID: PropTypes.string,
     description: PropTypes.string,
+    src: PropTypes.string
   };
 
   render() {
     return (
       <div className="card"> 
         
-        <div className="bg-img"></div>
+        <div className="bg-img"><img src={this.props.src} /></div>
 
         <div className="content">
           <h4>{this.props.name}</h4>

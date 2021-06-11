@@ -1,7 +1,40 @@
 {
-    "inventory" : 
-    [
-        {"id":"BP", "name":"Butter Pecan", "stock":5, "description":"Wonderful flavor"},
-        {"id":"BR", "name":"Bourbon and Pecan", "stock":5, "description":"Wonderful flavor"}
-    ]
+  "inventory": [
+    {
+      "id": "BP",
+      "name": "Butter Pecan",
+      "stock": 1,
+      "description": "Wonderful flavor"
+    },
+    {
+      "id": "BR",
+      "name": "Bourbon and Pecan",
+      "stock": 0,
+      "description": "Wonderful flavor"
+    },
+    {
+      "id": "MC",
+      "name": "Mint Chocolate Chip",
+      "stock": 8,
+      "description": "Wonderful flavor"
+    },
+    {
+      "id": "C",
+      "name": "Coffee",
+      "stock": 8,
+      "description": "Wonderful flavor"
+    },
+    {
+      "id": "PW",
+      "name": "Peach Whiskey",
+      "stock": 7,
+      "description": "Wonderful flavor"
+    },
+    {
+      "id": "JJ",
+      "name": "Jungle Juice",
+      "stock": 2,
+      "description": "Wonderful flavor"
+    }
+  ]
 }

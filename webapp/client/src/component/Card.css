@@ -5,9 +5,14 @@
 
 .bg-img {
   background-size: cover;
-  min-height: 180px;
+  /* min-height: 180px; */
   background-position: center;
   background-color: #ccc;
+}
+
+img {
+  width: 100%;
+  height: 100%;
 }
 
 .content {

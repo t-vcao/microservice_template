@@ -8,6 +8,9 @@ export default class App extends React.Component {
     return (
       <div className="component-app">
         <div className="header">
+          <div>
+          {/* <h2>I Scream for Ice Cream</h2> */}
+          </div>
           <div className="right">
             <Login />
           </div>

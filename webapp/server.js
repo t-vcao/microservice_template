@@ -19,6 +19,7 @@ The following routes forward requests (using pipe) from our React client to our 
 */
 
 app.post('/icecream/add', async (req, res) => {
+  console.log("ice cream add request reached server");
   const addUrl = `${daprUrl}/iceapp/method/icecream_add`;
   req.pipe(request(addUrl)).pipe(res);
 });
@@ -28,13 +29,12 @@ app.post('/account/login', async (req, res) => {
   const loginURL = `${daprUrl}/accapp/method/account_login`;
   console.log(loginURL);
   req.pipe(request(loginURL)).pipe(res);
-  console.log("Finished request");
 });
 
 app.post('/account/add', async (req, res) => {
-  const multiplyUrl = `${daprUrl}/accapp/method/account_add`;
-  req.pipe(request(multiplyUrl)).pipe(res);
-  console.log("request?")
+  console.log("account add request reached server");
+  const accURL = `${daprUrl}/accapp/method/account_add`;
+  req.pipe(request(accURL)).pipe(res);
 });
 
 // Forward state retrieval to Dapr state endpoint
