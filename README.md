@@ -17,7 +17,7 @@ dapr run --app-id frontendapp --app-port 8080 --dapr-http-port 3500 node server.
 
 ## IceCreamApp
 ```bash
-pip3 install flask
+pip3 install wheel python-dotenv flask_cors flask
 dapr run --app-id iceapp --app-port 5000 --dapr-http-port 3501 flask run
 ```
 
