@@ -13,20 +13,20 @@ dapr init
 ## IceCreamApp
 ```bash
 pip3 install wheel python-dotenv flask_cors flask
-dapr run --app-id iceapp --app-port 5000 --dapr-http-port 3501 flask run
+dapr run --app-id ice-app --app-port 5000 --dapr-http-port 3501 flask run --components-path ..\components
 ```
 
 ## AccountApp
 ```bash
 npm install
-dapr run --app-id accapp --app-port 4000 --dapr-http-port 3502 node app.js --components-path ..\..\..\testing\microservice
+dapr run --app-id acc-app --app-port 4000 --dapr-http-port 3502 node app.js --components-path ..\components
 ```
 
 ## WebApp
 ```bash
 npm install
 npm run buildclient
-dapr run --app-id frontendapp --app-port 8080 --dapr-http-port 3500 node server.js
+dapr run --app-id frontend-app --app-port 8080 --dapr-http-port 3500 node server.js
 ```
 View in localhost:8080
 
