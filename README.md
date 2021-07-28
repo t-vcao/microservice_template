@@ -19,7 +19,7 @@ dapr run --app-id iceapp --app-port 5000 --dapr-http-port 3501 flask run
 ## AccountApp
 ```bash
 npm install
-dapr run --app-id accapp --app-port 4000 --dapr-http-port 3502 node app.js
+dapr run --app-id accapp --app-port 4000 --dapr-http-port 3502 node app.js --components-path ..\..\..\testing\microservice
 ```
 
 ## WebApp
