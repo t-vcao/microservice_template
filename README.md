@@ -8,11 +8,12 @@ Note: add rest of installation and set up
 dapr init
 ...
 ```
-
+https://docs.dapr.io/developing-applications/sdks/python/python-client/
 
 ## IceCreamApp
 ```bash
 pip3 install wheel python-dotenv flask_cors flask
+pip install dapr
 dapr run --app-id ice-app --app-port 5000 --dapr-http-port 3501 flask run --components-path ..\components
 
 dapr invoke --app-id ice-app --method icecream/add --data-file iceadd.json
