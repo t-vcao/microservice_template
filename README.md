@@ -14,6 +14,8 @@ dapr init
 ```bash
 pip3 install wheel python-dotenv flask_cors flask
 dapr run --app-id ice-app --app-port 5000 --dapr-http-port 3501 flask run --components-path ..\components
+
+dapr invoke --app-id ice-app --method icecream/add --data-file iceadd.json
 ```
 
 ## AccountApp
