@@ -6,7 +6,7 @@
  * String productID:
  */
  export default async function login(username, password) {
-    console.log(`Calling login service for ${username}`);
+    console.log(`Calling login service for ${username}, ${password}`);
   
     const validate = await fetch(`/account/login`, {
         method: 'POST',
@@ -20,7 +20,7 @@
         }),
       });
     const validateResponse = await validate.json();
-    console.log("response", validateResponse["valid"]);
+    console.log("response", validateResponse);
 
     return validateResponse["valid"];
   }

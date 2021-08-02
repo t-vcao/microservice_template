@@ -6,41 +6,77 @@
 import flask
 from flask import request, jsonify
 from flask_cors import CORS
-import math
-import sys
 import json
+import os
+import requests
 
 app = flask.Flask(__name__)
 CORS(app)
 
-@app.route('/icecream_add', methods=['POST'])
-def icecream_add():
+### Deployment
+statestore = "statestore"
+dapr_port = os.environ['icecream_HTTP_PORT']
+app_port = os.environ['icecream_APP_PORT']
+host = "0.0.0.0"
+
+# ### Local testing
+# statestore = "icestore"
+# host = "localhost"
+# app_port = 5000
+# dapr_port = os.getenv("DAPR_HTTP_PORT", 3501)
+
+dapr_url = "http://{}:{}/v1.0/state/{}".format(host, dapr_port, statestore)
+print(dapr_url)
+
+@app.route('/icecream/get', methods=['POST'])
+def icecream_get():
     content = request.json
     username, productID = content['username'], content['productID']
+    print(productID)
     
-    with open('inventory.json', 'r') as f:
-        data = json.load(f)
+    try:
+        print("{}/{}".format(dapr_url, productID))
+        response = requests.get("{}/{}".format(dapr_url, productID), timeout=5)
+        if not response.ok:
+            print("Dapr container not started yet couldn't send order", productID)
+            return "{valid: false}"
+        else:
+            return response.text
 
-    name, stock, valid = "temp", 0, False
-    for ele in data["inventory"]:
-        if ele["id"] == productID:
-            name = ele["name"]
-            stock = ele["stock"]-1
-            valid = True if stock > 0 else False 
+    except Exception as e:
+        print(e)
+        return "error: "+str(e)
 
-            if valid:
-                ele["stock"] = stock
-
-    with open('inventory.json', 'w') as file:
-        json.dump(data, file, indent=2)
-
-    # validating
-    response = {
-        "name" : name,
-        "stock" : stock,
-        "valid" : valid
+@app.route('/icecream/add', methods=['POST'])
+def icecream_add():
+    content = request.json
+    name, productID, stock = content['name'], content['productID'], content['stock']
+    print(name, productID, stock)
+    prodInfo = {
+        "name": name,
+        "stock": stock
     }
 
-    return jsonify(response)
+    state = [{
+        "key": productID,
+        "value": prodInfo
+    }]
 
-app.run(host="localhost", port=5000)
+    try:
+        print(json.dumps(state))
+        response = requests.post(dapr_url, json=json.dumps(state), timeout=5)
+        if not response.ok:
+            print("Dapr container not started yet couldn't send order", state)
+            return "{valid: false}"
+        else:
+            print("Send order update", n, "successfully")
+            return "{valid: true}"
+
+    except Exception as e:
+        print("Dapr container not started yet", flush=True)
+        return "{valid: false}"
+
+    return "{valid: true}"
+
+print(dapr_url)
+app.run(host="0.0.0.0", port=app_port)

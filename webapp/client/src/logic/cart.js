@@ -9,7 +9,7 @@
   const info = `${username} add ${productID}`
   console.log(`Calling add service `, info);
 
-  const validate = await fetch(`/icecream/add`, {
+  const validate = await fetch(`/icecream/get`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -20,15 +20,16 @@
         productID
       }),
     });
-  const validateResponse = await validate.json();
-  console.log("response", validateResponse["valid"]);
-  if (validateResponse["valid"])
+  const validateResponse = await validate.text();
+  const data = JSON.parse(validateResponse)
+  console.log("response", validateResponse, data);
+  if (data["stock"])
   {
-    alert(`Added ${validateResponse["name"]} to cart. Only ${validateResponse["stock"]} left in stock`);
+    alert(`Added ${data["name"]} to cart. Only ${data["stock"]} left in stock`);
   }
   else
   {
-    alert(`${validateResponse["name"]} out of stock.`);
+    alert(`${data["name"]} out of stock.`);
   }
   
 }

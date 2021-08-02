@@ -1,3 +1,7 @@
 label {
     padding: 0.5em;
 }
+
+#login {
+    display: inline-block;
+}

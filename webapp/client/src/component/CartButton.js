@@ -15,7 +15,7 @@ export default class CartButton extends React.Component {
 
   render() {
     return (
-        <button onClick={e => this.handleClick(e.target.value)}>
+        <button onClick={e => this.handleClick()}>
             Add to Cart
         </button>
     );
