@@ -9,14 +9,15 @@ require('isomorphic-fetch');
 const app = express();
 app.use(bodyParser.json());
 
-// These ports are injected automatically into the container.
-// const daprPort = process.env.account_HTTP_PORT;
-// const appPort = process.env.account_APP_PORT;
-// const host = "0.0.0.0"
+/// Deployment
+const daprPort = process.env.account_HTTP_PORT;
+const appPort = process.env.account_APP_PORT;
+const host = "0.0.0.0"
 
-const daprPort = 3502
-const appPort = 4000
-const host = "localhost"
+// /// Local testing
+// const daprPort = 3502
+// const appPort = 4000
+// const host = "localhost"
 
 const stateStoreName = `accountstore`;
 const stateUrl = `http://${host}:${daprPort}/v1.0/state/${stateStoreName}`;
@@ -83,6 +84,7 @@ app.post('/newuser', (req, res) => {
     });
 });
 
+// adding to icecream database, name error with python posts
 app.post('/newicecream', (req, res) => {
     const data = req.body.data;
     const productID = data.productID;

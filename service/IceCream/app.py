@@ -45,8 +45,9 @@ def icecream_get():
 
     except Exception as e:
         print(e)
-        return "error: "+str(e)
+        return "{valid: false}"
 
+# Error with formatting, use js to post
 @app.route('/icecream/add', methods=['POST'])
 def icecream_add():
     content = request.json
