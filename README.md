@@ -23,6 +23,8 @@ dapr invoke --app-id icecream-app --method icecream/add --data-file iceadd.json
 ```bash
 npm install
 dapr run --app-id account-app --app-port 4000 --dapr-http-port 3502 node app.js --components-path ..\components
+
+curl -X POST -d @testfiles/user.json -H Content-Type:application/json http://localhost:6908/v1.0/invoke/account-app/method/newuser
 ```
 
 ## WebApp (client)
