@@ -1,7 +1,7 @@
 # microservice_template
 Starts up icecream and account service linked to the frontend service.
 
-
+# Local Testing
 ## Installation
 Note: add rest of installation and set up
 ```bash
@@ -23,9 +23,11 @@ dapr invoke --app-id icecream-app --method icecream/add --data-file iceadd.json
 ```bash
 npm install
 dapr run --app-id account-app --app-port 4000 --dapr-http-port 3502 node app.js --components-path ..\components
+
+curl -X POST -d @testfiles/user.json -H Content-Type:application/json http://localhost:6908/v1.0/invoke/account-app/method/newuser
 ```
 
-## WebApp
+## WebApp (client)
 ```bash
 npm install
 npm run buildclient
@@ -38,3 +40,7 @@ View in localhost:8080
 ```bash
 npm run build
 ```
+
+# App Service Deployment
+## Docker images
+Current images can be pulled from tvcao/template-icecream, tvcao/template-account, tvcao/template-client
