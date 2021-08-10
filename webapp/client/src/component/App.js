@@ -8,9 +8,7 @@ export default class App extends React.Component {
     return (
       <div className="component-app">
         <div className="header">
-          <div>
-          {/* <h2>I Scream for Ice Cream</h2> */}
-          </div>
+          <h1> &Psi; PSI Icecream</h1>
           <div className="right">
             <Login />
           </div>

@@ -8,7 +8,7 @@
  export default async function login(username, password) {
     console.log(`Calling login service for ${username}, ${password}`);
   
-    const validate = await fetch(`/account/login`, {
+    const validate = await fetch('/account/login', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -19,8 +19,9 @@
             password
         }),
       });
-    const validateResponse = await validate.json();
-    console.log("response", validateResponse);
+      const validateResponse = await validate.json();
+      console.log(validateResponse);
+      const valid = validateResponse["password"] != undefined;
 
-    return validateResponse["valid"];
+      return valid;
   }

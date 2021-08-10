@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import "./Button.css";
 import "./Login.css"
 import login from "../logic/account.js";
+import update from "../logic/update.js";
 
 export default class LoginButton extends React.Component {
   static propTypes = {
@@ -11,7 +12,8 @@ export default class LoginButton extends React.Component {
     password: PropTypes.string,
     passwordText: PropTypes.string,
     signin: PropTypes.bool,
-    loginText: PropTypes.string
+    loginText: PropTypes.string,
+    intervalId: PropTypes.number
   };
 
   constructor(props)
@@ -32,6 +34,8 @@ export default class LoginButton extends React.Component {
       button.textContent = 'Sign In';
       this.loginText = 'Sign In';
 
+      alert("You've signed out!");
+      
       this.render();
     }
     else
@@ -48,7 +52,13 @@ export default class LoginButton extends React.Component {
           button.textContent = 'Sign Out';
           this.loginText = 'Sign Out';
 
+          alert(`You've signed in as ${this.username}!`);
+
           this.render();
+        }
+        else
+        {
+          alert("Invalid username or password.");
         }
       });
     }
@@ -60,6 +70,17 @@ export default class LoginButton extends React.Component {
 
   passwordChange = (val) => {
     this.password = val;
+  }
+
+  componentDidMount() {
+    this.intervalId = setInterval(() => {
+        if (this.signin)
+          update(this.username, this.password);
+    }, 1000);
+  }
+
+  componentWillUnmount(){
+    clearInterval(this.intervalId);
   }
 
   render() {

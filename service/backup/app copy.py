@@ -28,17 +28,27 @@ host = "0.0.0.0"
 dapr_url = "http://{}:{}/v1.0/state/{}".format(host, dapr_port, statestore)
 print(dapr_url)
 
-@app.route('/get', methods=['POST'])
+@app.route('/icecream/get', methods=['POST'])
 def icecream_get():
     content = request.json
     username, productID = content['username'], content['productID']
+    print(productID)
     
-    with DaprClient() as d:
-        data = d.get_state(store_name=statestore, key=productID).data
+    try:
+        print("{}/{}".format(dapr_url, productID))
+        response = requests.get("{}/{}".format(dapr_url, productID), timeout=5)
+        if not response.ok:
+            print("Dapr container not started yet couldn't send order", productID)
+            return "{valid: false}"
+        else:
+            return response.text
 
-    return data
+    except Exception as e:
+        print(e)
+        return "{valid: false}"
 
-@app.route('/add', methods=['POST'])
+# Error with formatting, use js to post
+@app.route('/icecream/add', methods=['POST'])
 def icecream_add():
     content = request.json
 
