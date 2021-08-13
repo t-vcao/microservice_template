@@ -7,12 +7,13 @@
  */
  export default async function update(username, password) {    
     let now = new Date();
+    var localNow = now.toLocaleString()
 
     const data = {
         username: username,
         value: {
             password: password,
-            lastactive: now
+            lastactive: localNow
         }
     }
 

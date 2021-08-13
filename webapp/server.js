@@ -10,10 +10,10 @@ const app = express();
 
 /// Demo
 const daprPort = process.env.DAPR_HTTP_PORT;
-// const appPort = process.env.DAPR_APP_PORT;
+const appPort = process.env.DAPR_APP_PORT;
 
 /// Local testing
-const appPort = 8080;
+// const appPort = 8080;
 
 const daprUrl = `http://localhost:${daprPort}/v1.0/invoke`;
 

@@ -8,7 +8,7 @@ from flask_cors import CORS
 import json
 import os
 import requests
-from dapr.clients import DaprClient
+from dapr.clients import DaprClient # Dapr SDK
 
 app = flask.Flask(__name__)
 CORS(app)
@@ -25,14 +25,12 @@ host = "0.0.0.0"
 # app_port = 5000
 # dapr_port = os.getenv("DAPR_HTTP_PORT", 3501)
 
-dapr_url = "http://{}:{}/v1.0/state/{}".format(host, dapr_port, statestore)
-print(dapr_url)
-
 @app.route('/get', methods=['POST'])
 def icecream_get():
     content = request.json
     username, productID = content['username'], content['productID']
     
+    # Use Dapr SDK for accessing state store
     with DaprClient() as d:
         data = d.get_state(store_name=statestore, key=productID).data
 
